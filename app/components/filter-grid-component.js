@@ -4,23 +4,12 @@ angular.module('comp')
 		controller: ['$http','cartService','$scope','$stateParams', function($http,cartService,$scope,$stateParams){
 			var self= this;
 			self.all="All";
-			/*$scope.sendIdDetail= function(phone){
-				shareData.setData(phone);
-				dataShare.shared.data = shareData.getData();
-				console.log(dataShare.shared);
-			}*/
-			$scope.cartItems=0;
-			$scope.addToCart=cartService.addItemToCart;
-  			//subscribe items added callback
-  			cartService.onItemsAdded(function(items){
-    			$scope.cartItems=items;
-  			});
-			
-			$http.get('phones/phones.json').then(function(response){
+			self.$onInit = function(){
+				$http.get('phones/phones.json').then(function(response){
 				self.phones=response.data;
-			//	console.log(self.phones.length);
+				self.phoneList= self.phones;
 			})
-
+			}
 			this.comp= function(company){
 				console.log(company);
 				self.phoneList=[];
