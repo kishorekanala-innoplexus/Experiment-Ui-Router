@@ -1,7 +1,7 @@
 angular.module('comp')
 	.component('filterGrid',{
 		templateUrl:'partials/filter.html',
-		controller: ['$http','cartService','$scope','$stateParams', function($http,cartService,$scope,$stateParams){
+		controller: ['$http','cartService','$scope','$stateParams','$state','$location', function($http,cartService,$scope,$stateParams,$state,$location){
 			var self= this;
 			self.all="All";
 			self.$onInit = function(){
@@ -10,14 +10,18 @@ angular.module('comp')
 				self.phoneList= self.phones;
 			})
 			}
-			this.comp= function(company){
+			this.comp= function(company,id){
 				console.log(company);
 				self.phoneList=[];
-
+				$state.go('state',{
+					company: company,
+					id: id
+				},{
+					notify:false
+				})
 				if(company === 'All')
 				{
 					self.phoneList = self.phones;
-					return;
 				}
 
 				for (var i = 0; i<self.phones.length; i++) {

@@ -29,7 +29,7 @@
 					      		<a  type="button" class="list-group-item " ng-href="#/home/All/motorola-xoom-with-wi-fi" ng-click="$ctrl.comp('All')">All</a>
 					      	</div>
 					      	<div class="list-group mag" ng-repeat="phone in $ctrl.phones | unique:'company' ">
-								  <a  type="button" ng-href="#/home/{{phone.company}}/{{phone.id}}" class="list-group-item " ng-click="$ctrl.comp(phone.company)">{{phone.company}}</a>
+								  <a  type="button"  class="list-group-item " ng-click="$ctrl.comp(phone.company,phone.id)">{{phone.company}}</a>
 							</div>
 					      </div>
 					    </div>
